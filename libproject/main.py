@@ -8,4 +8,4 @@ linha()
 for i, opt in enumerate(options):
     print(f'{i+1} {opt}')
 linha()
-
+opt = int(input(""))
