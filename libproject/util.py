@@ -7,7 +7,6 @@ class Biblioteca:
         self.nome = nome
 
     def remove_book(self, name):
-        Biblioteca.get_books(self)
         if name in self.__banco_livros['books']:
             print(f'\033[95mbook {name} selected\033[0m')
             print(f'1 - remove book\n2 - back to menu')
