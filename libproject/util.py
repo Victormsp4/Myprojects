@@ -1,3 +1,4 @@
+from interface import *
 from random import randint
 class Biblioteca:
 
@@ -7,26 +8,31 @@ class Biblioteca:
         self.nome = nome
 
     def remove_book(self, name):
+        #lista os livros disponiveis
         if name in self.__banco_livros['books']:
-            print(f'\033[95mbook {name} selected\033[0m')
-            print(f'1 - remove book\n2 - back to menu')
+            txt(f'book {self.__banco_livros['books'][name]} selected',92)
+            txt(f'1 - remove book\n2 - back to menu',97)
             opt = int(input('->'))
+
             if opt == 1:
+                txt(f'Book {self.__banco_livros['books'][name]} removed successfully.',92)
                 del self.__banco_livros['books'][name]
-                print(f'\033[92mbook {name} removed successfully!\033[0m')
+
             elif opt == 2:
                 return
+            
         else:
-            print('book not found')
+            txt('book not found',91)
     
     #adiciona um livro, em um dicionario aninhado.
-    def add_book(self,nome,id):
+    def add_book(self,id,name):
         if 'books' not in self.__banco_livros:
-            self.__banco_livros['books']={id:nome}
+            self.__banco_livros['books']={id:name}
+
         else:
-            self.__banco_livros['books'].update({id:nome})
-        print('\033[92mBook added successfully!\033[0m')
-  
+            self.__banco_livros['books'].update({id:name})
+        txt(f'Book {name} added successfully with ID: {id}',92)
+
     # gera um id unico para um novo livro
     def gera_id(self):
         while True:
@@ -36,6 +42,8 @@ class Biblioteca:
             else:
                 continue
     
-    def get_books(self):
-        for key,value in self.__banco_livros['books'].items():
-            print(f'\033[92m{key}, \033[91m{value}\033[0m')
+    def list_books(self):
+        #percorre o dicionario em busca do nome do livro, e printa o id e o nome do livro.
+        menu('Books in the Library:',96)
+        for key, value in self.__banco_livros['books'].items():
+            txt(f'Name: {value} - ID: {key}',93)
