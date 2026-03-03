@@ -1,40 +1,42 @@
 from random import randint
 class Biblioteca:
-    #cria um obj biblioteca
+
+    #cria um obj biblioteca com atributo privado.
     def __init__(self,nome):
-        self.banco_livros = {}
+        self.__banco_livros = {}
         self.nome = nome
 
-    def remove_book(self):
-        pass
+    def remove_book(self, name):
+        Biblioteca.get_books(self)
+        if name in self.__banco_livros['books']:
+            print(f'\033[95mbook {name} selected\033[0m')
+            print(f'1 - remove book\n2 - back to menu')
+            opt = int(input('->'))
+            if opt == 1:
+                del self.__banco_livros['books'][name]
+                print(f'\033[92mbook {name} removed successfully!\033[0m')
+            elif opt == 2:
+                return
+        else:
+            print('book not found')
     
-    #adiciona um livro.
+    #adiciona um livro, em um dicionario aninhado.
     def add_book(self,nome,id):
-        self.banco_livros.update({id:nome})
+        if 'books' not in self.__banco_livros:
+            self.__banco_livros['books']={id:nome}
+        else:
+            self.__banco_livros['books'].update({id:nome})
         print('\033[92mBook added successfully!\033[0m')
   
     # gera um id unico para um novo livro
     def gera_id(self):
         while True:
             self.getid = randint(1000,1999)
-            if self.getid not in self.banco_livros:
+            if self.getid not in self.__banco_livros:
                 return self.getid
             else:
                 continue
-
-    #exibi o dicionario de livros
-    def list_books(self):
-        print(self.banco_livros)
     
-    def get_books(self, name):
-        if name in self.banco_livros:
-            print(f'\033[92mbook {name} selected\033[0m')
-            print(f'1 - remove book\n2 - back to menu')
-            opt = int(input('->'))
-            if opt == 1:
-                del self.banco_livros[name]
-                print(f'\033[92mbook {name} removed successfully!\033[0m')
-            elif opt == 2:
-                return
-        else:
-            print('book not found')
+    def get_books(self):
+        for key,value in self.__banco_livros['books'].items():
+            print(f'\033[92m{key}, \033[91m{value}\033[0m')

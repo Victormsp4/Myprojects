@@ -19,14 +19,16 @@ while True:
         continue
 
     if opt == 2:
-        pass
+        library.get_books()
+        name = input('selection a book name:')
+        library.remove_book(name)
 
     if opt == 3:
-        library.list_books()
-        name = input('select a book or "@" for exit: ')
+        """name = input('select a book or "@" for exit: ')
         if name == '@':
-            continue
-        library.get_books(name)
+            continue"""
+        menu('Books in the Library:')
+        library.get_books()
 
     if opt == 4:
         print('Exiting the program...')
