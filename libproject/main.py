@@ -28,7 +28,7 @@ while True:
 
         if opt == 3:
             name = input('Enter the name of the book to search: ')
-            library.get_books(name)
+            library.search_books(name)
             sleep(0.7)
 
         if opt == 4:
@@ -41,5 +41,5 @@ while True:
     except KeyError:
         txt('There are no books registered in the library.',91)
         continue
-    except TypeError, NameError:
+    except (TypeError, NameError):
         txt('Error occurred while processing the book information. Please try again.',91)

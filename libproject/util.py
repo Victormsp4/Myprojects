@@ -47,3 +47,13 @@ class Biblioteca:
         menu('Books in the Library:',96)
         for key, value in self.__banco_livros['books'].items():
             txt(f'Name: {value} - ID: {key}',93)
+    
+    def search_books(self,name):
+        if name in self.__banco_livros['books'].values():
+            for key, value in self.__banco_livros['books'].items():
+                if name == value:
+                    menu('book(s) found',96)
+                    txt(f'Name: {value} - ID: {key}',93)
+                    linha()
+        else:
+            txt('book(s) not found',91)
