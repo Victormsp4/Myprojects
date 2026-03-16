@@ -1,4 +1,4 @@
-from interface import *
+""" from interface import *
 from random import randint
 class Biblioteca:
 
@@ -56,4 +56,4 @@ class Biblioteca:
                     txt(f'Name: {value} - ID: {key}',93)
 
         else:
-            txt('book(s) not found',91)
+            txt('book(s) not found',91) """

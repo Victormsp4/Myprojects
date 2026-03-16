@@ -29,8 +29,8 @@ class Database:
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM books ")
         listalivros = cursor.fetchall()
-        interface.txt('Título   |   id',96)
-        interface.linha(lenn = 20, color = 92)
+        interface.txt(f'Título{'id':>24}',96)
+        interface.linha(lenn = 30, color = 92)
         for indice,i in listalivros:
-            print(f'{i} {indice:>{14-len(i)}}')
+            print(f'{i} {indice:>{29-len(i)}}')
         conn.close()

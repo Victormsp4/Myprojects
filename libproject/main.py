@@ -1,9 +1,9 @@
 from time import sleep
-from util import *
+from database import *
 from interface import *
 
 
-library = Biblioteca('Central Library')
+database = Database('books.db')
 menu('Welcome to the Library Management System',96)
 while True:
     try:
@@ -19,16 +19,16 @@ while True:
             if nome.strip() == '':
                 txt('Book name cannot be empty. Please try again.',91)
                 continue
-            library.add_book(library.gera_id(),nome)
+            database.addbook(nome)
 
         if opt == 2:
-            library.list_books()
+            database.list_books()
             book_id = int(input('selection a book ID:'))
-            library.remove_book(book_id)
+            database.remove_book(book_id)
 
         if opt == 3:
-            name = input('Enter the name of the book to search: ')
-            library.search_books(name)
+            #name = input('Enter the name of the book to search: ')
+            database.list_books()
             sleep(0.7)
 
         if opt == 4:
